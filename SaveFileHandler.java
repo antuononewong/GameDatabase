@@ -8,8 +8,8 @@ import GameDatabase.Connection.DBConnection;
  * save files from the database, and closes the same connection.
  */
 
-	// Database Schema 
-	// id (int), username (str), hp (int), mana (int), credits (int), checkpoint (str), quest (str)
+// Database Schema 
+// id (int), username (str), hp (int), mana (int), credits (int), checkpoint (str), quest (str)
 
 public class SaveFileHandler {
 	
