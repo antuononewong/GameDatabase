@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+// Script for handling connecting/closing of connection to a datbase
+// based on the stored credentials. It has generalized insert/select functions
+// that handles the query execution pattern/error checking.
+
 public class DBConnection {
 	
 		// Database credentials
@@ -24,7 +28,7 @@ public class DBConnection {
 			properties.put("user", userName);
 			properties.put("password", password);
 			
-			String connectionInput = "jdbc:mysql://" + serverName + ":" + portNumber + "/";
+			String connectionInput = String.format("jdbc:mysql://%s:%s/", serverName, portNumber);
 			connection = DriverManager.getConnection(connectionInput, properties);
 		}
 		
@@ -33,11 +37,13 @@ public class DBConnection {
 			connection.close();
 		}
 		
+		// Simple print error to the console
 		public static void PrintErrorStatement(Exception e) {
 			System.out.println("---Error trying to execute SQL query.---");
 			e.printStackTrace();
 		}
 		
+		// Runs a string query that includes INSERT with the open database connection
 		public static void Insert(String query) throws SQLException {
 			Statement statement = null;
 			
@@ -55,6 +61,8 @@ public class DBConnection {
 			}
 		}
 		
+		// Runs a string query that includes SELECT with the open database connection 
+		// and returns the output from the database
 		public static ResultSet Select(String query) throws SQLException {
 			Statement statement = null;
 			
