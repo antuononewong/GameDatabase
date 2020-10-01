@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-// Script for handling connecting/closing of connection to a datbase
+// Script for handling connecting/closing of connection to a database
 // based on the stored credentials. It has generalized insert/select functions
 // that handles the query execution pattern/error checking.
 
