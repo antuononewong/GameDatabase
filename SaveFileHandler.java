@@ -8,8 +8,8 @@ import GameDatabase.Connection.DBConnection;
  * save files from the database, and closes the same connection.
  */
 
-// Database Schema 
-// id (int), username (str), hp (int), mana (int), credits (int), checkpoint (str), quest (str)
+// Database Schema - save_files
+// id (Primary key - int), username (str), hp (int), mana (int), credits (int), checkpoint (str), quest (str)
 
 public class SaveFileHandler {
 	
@@ -58,7 +58,7 @@ public class SaveFileHandler {
 			int credits = set.getInt("credits");
 			String checkpoint = set.getString("checkpoint");
 			String quest = set.getString("quest");
-			System.out.println(String.format("%s @ %s with quest: %s. /nResources:/n HP: %d | Mana: %d | Credits: %d.", 
+			System.out.println(String.format("%s @ %s with quest: %s. \nResources:\n HP: %d | Mana: %d | Credits: %d.", 
 							   username, checkpoint, quest, hp, mana, credits));
 		}
 	}
