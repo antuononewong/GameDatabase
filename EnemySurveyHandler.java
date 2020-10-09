@@ -4,11 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import GameDatabase.Connection.DBConnection;
 
-// commit
-// added sql queries for different information
-// added enemy survey data INSERT
-// added parse functions for every query
-
 // Database Schema - enemy_surveys
 // enemyName (str), area (str), playerLevel (int), encounters (int), deaths (int), abilities (str), diedTo (str)
 
