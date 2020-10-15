@@ -80,5 +80,25 @@ public class DBConnection {
 			}
 			return null;
 		}
+		
+		// Runs a string query that includes UPDATE with the open database connection
+		// Functionally the same as Insert(), but naming this update to coincide
+		// with appropriate queries
+		public static void Update(String query) throws SQLException {
+			Statement statement = null;
+			
+			try {
+				statement = connection.createStatement();
+				statement.executeUpdate(query);
+			}
+			catch (Exception e) {
+				DBConnection.PrintErrorStatement(e);
+			}
+			finally {
+				if (statement != null) {
+					statement.close();
+				}
+			}
+		}
 
 }
