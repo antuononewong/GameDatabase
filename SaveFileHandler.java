@@ -13,14 +13,26 @@ import GameDatabase.Connection.DBConnection;
 
 public class SaveFileHandler {
 	
+	// Replace old username with new user-inputed username in database
+	public void UpdateUsername(String oldUsername, String newUsername) {
+		String query = String.format("UPDATE save_files SET username = %s WHERE username = %s;", newUsername, oldUsername);
+		
+		try {
+			DBConnection.Update(query);
+		}
+		catch (SQLException e) {
+			System.out.println("---SQLException error from SaveFileHandler.UpdateUsername().---");
+			e.printStackTrace();
+		}
+	}
+	
 	// Add save file to database based on parameters.
 	// Sample query - INSERT INTO save_files (username, hp, mana, credits, checkpoint, quest) 
 	//				  VALUES (username, hp, mana, credits, checkpoint, quest);
-	// Database has auto-incrementing ID as primary key.
 	public void AddSaveFile(String username, int hp, int mana, int credits, 
 							String checkpoint, String quest) {
-		String query = "INSERT INTO save_files (username, hp, mana, credits, checkpoint, quest) VALUES (" +
-					   String.format("%s, %d, %d, %d, %s, %s);", username, hp, mana, credits, checkpoint, quest);
+		String query = String.format("INSERT INTO save_files (username, hp, mana, credits, checkpoint, quest) "
+									+ "VALUES (%s, %d, %d, %d, %s, %s);", username, hp, mana, credits, checkpoint, quest);
 		try {
 			DBConnection.Insert(query);
 		}
