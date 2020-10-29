@@ -1,7 +1,7 @@
 package GameDatabase.Data;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import GameDatabase.Connection.DBConnection;
 
 /* Script that handles the surveys shown to players upon completion of a quest. The survey will
@@ -23,37 +23,37 @@ public class QuestSurveyHandler {
 	// quest, difficulty, clearInstructions, questLength - general feel of a quest
 	// area, playerLevel - completion rate of previous areas
 	
-	private String pathing = "SELECT area, COUNT(quest) AS questCount FROM quest_surveys;";
-	private String questFrequency = "SELECT questType, COUNT(quest) AS questCount FROM quest_surveys;";
-	private String questComprehension = "SELECT quest, AVG(clearInstructions) AS clearAverage FROM quest_surveys;";
-	private String areaFeel = "SELECT area, AVG(playerLevel) AS levelAverage, AVG(difficulty) AS difficultyAverage FROM quest_surveys;";
-	private String questTime = "SELECT quest, AVG(questLength) AS lengthAverage FROM quest_surveys;";
-	private String questFeel = "SELET quest, AVG(difficulty) AS difficultyAverage, AVG(clearInstructions) AS clearAverage, "
+	private String _pathing = "SELECT area, COUNT(quest) AS questCount FROM quest_surveys;";
+	private String _questFrequency = "SELECT questType, COUNT(quest) AS questCount FROM quest_surveys;";
+	private String _questComprehension = "SELECT quest, AVG(clearInstructions) AS clearAverage FROM quest_surveys;";
+	private String _areaFeel = "SELECT area, AVG(playerLevel) AS levelAverage, AVG(difficulty) AS difficultyAverage FROM quest_surveys;";
+	private String _questTime = "SELECT quest, AVG(questLength) AS lengthAverage FROM quest_surveys;";
+	private String _questFeel = "SELET quest, AVG(difficulty) AS difficultyAverage, AVG(clearInstructions) AS clearAverage, "
 								+ "AVG(questLength) AS lengthAverage FROM quest_surveys;";
-	private String areaCompletion  = "SELECT area, AVG(playerLevel) AS levelAverage FROM quest_surveys;";
+	private String _areaCompletion  = "SELECT area, AVG(playerLevel) AS levelAverage FROM quest_surveys;";
 	
 	// Run each defined query and print out the data received from database
 	public void GetAllQuestSurveyData() {
 		String[] pathingColumns = {"area", "questCount"};
-		GetQuestSurveyData(pathing, pathingColumns);
+		GetQuestSurveyData(_pathing, pathingColumns);
 		
 		String[] questFrequencyColumns = {"questType", "questCount"};
-		GetQuestSurveyData(questFrequency, questFrequencyColumns);
+		GetQuestSurveyData(_questFrequency, questFrequencyColumns);
 		
 		String[] questComprehensionColumns = {"quest", "clearAverage"};
-		GetQuestSurveyData(questComprehension, questComprehensionColumns);
+		GetQuestSurveyData(_questComprehension, questComprehensionColumns);
 		
 		String[] areaFeelColumns = {"area", "levelAverage" , "difficultyAverage"};
-		GetQuestSurveyData(areaFeel, areaFeelColumns);
+		GetQuestSurveyData(_areaFeel, areaFeelColumns);
 		
 		String[] questTimeColumns = {"quest", "lengthAverage"};
-		GetQuestSurveyData(questTime, questTimeColumns);
+		GetQuestSurveyData(_questTime, questTimeColumns);
 		
 		String[] questFeelColumns = {"quest", "difficultyAverage", "clearAverage", "lengthAverage"};
-		GetQuestSurveyData(questFeel, questFeelColumns);
+		GetQuestSurveyData(_questFeel, questFeelColumns);
 		
 		String[] areaCompletionColumns = {"area", "levelAverage"};
-		GetQuestSurveyData(areaCompletion, areaCompletionColumns);
+		GetQuestSurveyData(_areaCompletion, areaCompletionColumns);
 	}
 	
 	// Adds user-inputed survey data to the database
