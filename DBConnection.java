@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+
 // Script for handling connecting/closing of connection to a database
 // based on the stored credentials. It has generalized insert/select functions
 // that handles the query execution pattern/error checking.
@@ -14,27 +15,27 @@ import java.util.Properties;
 public class DBConnection {
 	
 		// Database credentials
-		private String userName = "root";
-		private String password = "pw";
-		private String serverName = "localhost";
-		private String portNumber = "3306";
+		private String _userName = "root";
+		private String _password = "pw";
+		private String _serverName = "localhost";
+		private String _portNumber = "3306";
 		
 		// Database connection
-		private static Connection connection;
+		private static Connection _connection;
 		
 		// Attempt to connect to database based on stored credentials.
 		public void GetConnection() throws SQLException {
 			Properties properties = new Properties();
-			properties.put("user", userName);
-			properties.put("password", password);
+			properties.put("user", _userName);
+			properties.put("password", _password);
 			
-			String connectionInput = String.format("jdbc:mysql://%s:%s/", serverName, portNumber);
-			connection = DriverManager.getConnection(connectionInput, properties);
+			String connectionInput = String.format("jdbc:mysql://%s:%s/", _serverName, _portNumber);
+			_connection = DriverManager.getConnection(connectionInput, properties);
 		}
 		
 		// Close database connection to release any used database resources
 		public void CloseConnection() throws SQLException {
-			connection.close();
+			_connection.close();
 		}
 		
 		// Simple print error to the console
@@ -48,7 +49,7 @@ public class DBConnection {
 			Statement statement = null;
 			
 			try {
-				statement = connection.createStatement();
+				statement = _connection.createStatement();
 				statement.executeUpdate(query);
 			}
 			catch (Exception e) {
@@ -67,7 +68,7 @@ public class DBConnection {
 			Statement statement = null;
 			
 			try {
-				statement = connection.createStatement();
+				statement = _connection.createStatement();
 				return statement.executeQuery(query);
 			}
 			catch (Exception e) {
@@ -88,7 +89,7 @@ public class DBConnection {
 			Statement statement = null;
 			
 			try {
-				statement = connection.createStatement();
+				statement = _connection.createStatement();
 				statement.executeUpdate(query);
 			}
 			catch (Exception e) {
