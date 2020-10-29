@@ -17,35 +17,35 @@ public class EnemySurveyHandler {
 	// enemyName, playerLevel, abilities - setup players use when fighting certain enemies
 	// enemyName, deathCount, abilities - see if certain setups are weaker
 	
-	private String areaDanger = "SELECT area, COUNT(deaths) AS deathCount FROM enemy_surveys;";
-	private String enemyDanger = "SELECT enemyName, area, COUNT(deaths) AS deathCount FROM enemy_surveys;";
-	private String areaBalance = "SELECT area, AVG(playerLevel) AS levelAverage, COUNT(deaths) AS deathCount FROM enemy_surveys;";
-	private String enemyDifficulty = "SELECT enemyName, COUNT(encounters) AS encounterCount, COUNT(deaths) AS deathCount FROM enemy_surveys;";
-	private String enemyAbilityBalance = "SELECT enemyName, COUNT(diedTo) AS dieCount FROM enemy_surveys;";
-	private String playerLoadouts = "SELECT enemyName, AVG(playerLevel) AS levelAverage, COUNT(abilities) AS abilityCount FROM enemy_surveys;";
-	private String loadoutBalance = "SELECT enemyName, COUNT(deaths) AS deathCount, COUNT(abilities) AS abilityCount FROM enemy_surveys;";
+	private String _areaDanger = "SELECT area, COUNT(deaths) AS deathCount FROM enemy_surveys;";
+	private String _enemyDanger = "SELECT enemyName, area, COUNT(deaths) AS deathCount FROM enemy_surveys;";
+	private String _areaBalance = "SELECT area, AVG(playerLevel) AS levelAverage, COUNT(deaths) AS deathCount FROM enemy_surveys;";
+	private String _enemyDifficulty = "SELECT enemyName, COUNT(encounters) AS encounterCount, COUNT(deaths) AS deathCount FROM enemy_surveys;";
+	private String _enemyAbilityBalance = "SELECT enemyName, COUNT(diedTo) AS dieCount FROM enemy_surveys;";
+	private String _playerLoadouts = "SELECT enemyName, AVG(playerLevel) AS levelAverage, COUNT(abilities) AS abilityCount FROM enemy_surveys;";
+	private String _loadoutBalance = "SELECT enemyName, COUNT(deaths) AS deathCount, COUNT(abilities) AS abilityCount FROM enemy_surveys;";
 	
 	public void GetAllEnemySurveyData() {
 		String[] areaDangerColumns = {"area", "deathCount"};
-		GetEnemySurveyData(areaDanger, areaDangerColumns);
+		GetEnemySurveyData(_areaDanger, areaDangerColumns);
 		
 		String[] enemyDangerColumns = {"enemyName", "area", "deathCount"};
-		GetEnemySurveyData(enemyDanger, enemyDangerColumns);
+		GetEnemySurveyData(_enemyDanger, enemyDangerColumns);
 		
 		String[] areaBalanceColumns = {"area", "levelAverage", "deathCount"};
-		GetEnemySurveyData(areaBalance, areaBalanceColumns);
+		GetEnemySurveyData(_areaBalance, areaBalanceColumns);
 		
 		String[] enemyDifficultyColumns = {"enemyName", "encounterCount", "deathCount"};
-		GetEnemySurveyData(enemyDifficulty, enemyDifficultyColumns);
+		GetEnemySurveyData(_enemyDifficulty, enemyDifficultyColumns);
 		
 		String[] enemyAbilityBalanceColumns = {"enemyName", "dieCount"};
-		GetEnemySurveyData(enemyAbilityBalance, enemyAbilityBalanceColumns);
+		GetEnemySurveyData(_enemyAbilityBalance, enemyAbilityBalanceColumns);
 		
 		String[] playerLoadoutsColumns = {"enemyName", "levelAverage", "abilityCount"};
-		GetEnemySurveyData(playerLoadouts, playerLoadoutsColumns);
+		GetEnemySurveyData(_playerLoadouts, playerLoadoutsColumns);
 		
 		String[] loadoutBalanceColumns = {"enemyName", "levelAverage", "abilityCount"};
-		GetEnemySurveyData(loadoutBalance, loadoutBalanceColumns);
+		GetEnemySurveyData(_loadoutBalance, loadoutBalanceColumns);
 	}
 	
 	// Adds enemy survey data witH INSERT query into connected database
